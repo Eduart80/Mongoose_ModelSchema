@@ -1,4 +1,4 @@
-# Mongoose Model Schema - Simple MERN Backend
+# Mongoose Model Schema - Digital Bookshelf
 
 A backend application demonstrating Mongoose models and schemas with MongoDB.
 

@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-require('dotenv').config();
-const userRoutes = require('./routes/userRoutes');
-const productRoutes = require('./routes/productRoutes');
+const PORT = process.env.PORT
+require('./db/connection')
+const productRoutes = require('./routes/bookRoutes.js');
 
 const app = express();
 
@@ -11,16 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// DB Connection
-const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI;
-
-mongoose.connect(MONGODB_URI)
-  .then(() => console.log('MongoDB connected successfully'))
-  .catch(err => console.error('MongoDB connection error:', err));
-
-app.use('/api/users', userRoutes);
-app.use('/api/products', productRoutes);
+app.use('/api/bookShelf', productRoutes);
 
 app.get('/', (req, res) => {
   res.json({ message: 'Welcome to Mongoose Model Schema API' });
